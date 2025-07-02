@@ -1,97 +1,192 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unlock iPhone - Enviar Texto Simples</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Define a fonte Inter para todo o corpo */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        /* Efeito de brilho para elementos específicos, com cor verde neon */
-        .neon-glow-text {
-            text-shadow: 0 0 5px rgba(190, 242, 114, 0.7), 0 0 10px rgba(190, 242, 114, 0.5), 0 0 15px rgba(190, 242, 114, 0.3);
-        }
-        .neon-glow-button {
-            box-shadow: 0 0 8px rgba(190, 242, 114, 0.7); /* Cor do brilho verde neon */
-        }
-    </style>
-</head>
-<!-- Fundo: Preto com um toque de verde neon, igual ao painel de carrossel -->
-<body class="bg-gradient-to-br from-gray-950 via-black to-lime-950 min-h-screen flex items-center justify-center p-4">
-    <div class="container bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-xl transform transition-all duration-300 hover:scale-105 border border-lime-400 neon-glow-button">
-        <h2 class="text-3xl font-extrabold text-center text-lime-300 mb-6 drop-shadow-lg neon-glow-text">Enviar Texto Simples</h2>
-        <p class="text-center text-lime-300 mb-8">Envie uma mensagem de texto rápida para qualquer número.</p>
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Unlock iPhone - Enviar Texto Simples</title>
+        <!-- Tailwind CSS CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            /* Define a fonte Inter para todo o corpo */
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+            /* Efeito de brilho para elementos específicos, com cor verde neon */
+            .neon-glow-text {
+                text-shadow: 0 0 5px rgba(190, 242, 114, 0.7), 0 0 10px rgba(190, 242, 114, 0.5), 0 0 15px rgba(190, 242, 114, 0.3);
+            }
+            .neon-glow-button {
+                box-shadow: 0 0 8px rgba(190, 242, 114, 0.7); /* Cor do brilho verde neon */
+            }
+        </style>
+    </head>
+    <!-- Fundo: Preto com um toque de verde neon, igual ao painel de carrossel -->
+    <body class="bg-gradient-to-br from-gray-950 via-black to-lime-950 min-h-screen flex items-center justify-center p-4">
+        <div class="container bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-xl transform transition-all duration-300 hover:scale-105 border border-lime-400 neon-glow-button">
+            <h2 class="text-3xl font-extrabold text-center text-lime-300 mb-6 drop-shadow-lg neon-glow-text">Enviar Texto Simples</h2>
+            <p class="text-center text-lime-300 mb-8">Envie uma mensagem de texto rápida para qualquer número.</p>
 
-        <div class="space-y-4">
-            <div>
-                <label for="phone" class="block text-sm font-medium text-lime-300 mb-1">Número do Cliente (com DDI, sem +):</label>
-                <input type="text" id="phone" placeholder="Ex: 5511999999999"
-                               class="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-700 text-white focus:ring-lime-400 focus:border-lime-400 transition duration-150 ease-in-out shadow-sm" />
+            <div class="space-y-4">
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-lime-300 mb-1">Número do Cliente (com DDI, sem +):</label>
+                    <input type="text" id="phone" placeholder="Ex: 5511999999999"
+                                   class="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-700 text-white focus:ring-lime-400 focus:border-lime-400 transition duration-150 ease-in-out shadow-sm" />
+                </div>
+
+                <div>
+                    <label for="message" class="block text-sm font-medium text-lime-300 mb-1">Mensagem de Texto:</label>
+                    <textarea id="message" rows="3" placeholder="Digite sua mensagem de teste..."
+                                   class="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-700 text-white focus:ring-lime-400 focus:border-lime-400 transition duration-150 ease-in-out shadow-sm"></textarea>
+                </div>
             </div>
 
-            <div>
-                <label for="message" class="block text-sm font-medium text-lime-300 mb-1">Mensagem de Texto:</label>
-                <textarea id="message" rows="3" placeholder="Digite sua mensagem de teste..."
-                               class="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-700 text-white focus:ring-lime-400 focus:border-lime-400 transition duration-150 ease-in-out shadow-sm"></textarea>
-            </div>
+            <button onclick="sendSimpleText()"
+                                   class="w-full py-3 bg-lime-600 text-white font-bold rounded-lg shadow-lg hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-opacity-75 transition duration-150 ease-in-out mt-8 text-lg neon-glow-button">
+                Enviar Texto
+            </button>
+
+            <div id="log" class="mt-8 p-4 bg-gray-700 rounded-lg border border-gray-600 text-lime-300 text-sm whitespace-pre-wrap overflow-x-auto shadow-inner"></div>
         </div>
 
-        <button onclick="sendSimpleText()"
-                               class="w-full py-3 bg-lime-600 text-white font-bold rounded-lg shadow-lg hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-opacity-75 transition duration-150 ease-in-out mt-8 text-lg neon-glow-button">
-            Enviar Texto
-        </button>
+        <!-- Seção de Encurtador de Link -->
+        <div class="container bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-xl transform transition-all duration-300 hover:scale-105 border border-lime-400 neon-glow-button mt-8">
+            <h2 class="text-3xl font-extrabold text-center text-lime-300 mb-6 drop-shadow-lg neon-glow-text">Encurtar Link</h2>
+            <p class="text-center text-lime-300 mb-8">Transforme links longos em curtos e fáceis de compartilhar.</p>
 
-        <div id="log" class="mt-8 p-4 bg-gray-700 rounded-lg border border-gray-600 text-lime-300 text-sm whitespace-pre-wrap overflow-x-auto shadow-inner"></div>
-    </div>
+            <div class="space-y-4">
+                <div>
+                    <label for="longUrl" class="block text-sm font-medium text-lime-300 mb-1">Link Original (Longa):</label>
+                    <input type="url" id="longUrl" placeholder="https://seulinkmuitolongo.com/pagina/subpagina?parametro=valor"
+                                   class="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-700 text-white focus:ring-lime-400 focus:border-lime-400 transition duration-150 ease-in-out shadow-sm" />
+                </div>
+            </div>
 
-    <script>
-        // ATENÇÃO: Esta URL precisa ser a URL REAL do seu proxy hospedado no Render.com.
-        // SUBSTITUA 'URL_DO_SEU_PROXY_HOSPEDADO_AQUI' pela URL que o Render te deu (ex: 'https://painel-whatsapp-proxy-api.onrender.com')
-        const proxyBaseUrl = 'URL_DO_SEU_PROXY_HOSPEDADO_AQUI'; // <--- SUBSTITUA AQUI PELA URL DO SEU RENDER.COM
-        const proxyUrl = `${proxyBaseUrl}/send-simple-text`; 
+            <button onclick="shortenUrl()"
+                                   class="w-full py-3 bg-blue-600 text-white font-bold rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-150 ease-in-out mt-8 text-lg neon-glow-button">
+                Encurtar Link
+            </button>
 
-        async function sendSimpleText() {
-            const phone = document.getElementById('phone').value.trim();
-            const message = document.getElementById('message').value.trim();
-            const log = document.getElementById('log');
+            <div id="shortUrlOutput" class="mt-8 p-4 bg-gray-700 rounded-lg border border-gray-600 text-lime-300 text-sm whitespace-pre-wrap overflow-x-auto shadow-inner hidden">
+                <label class="block text-sm font-medium text-lime-300 mb-2">Link Encurtado:</label>
+                <a id="shortenedLink" href="#" target="_blank" class="text-blue-400 hover:underline break-all"></a>
+                <button onclick="copyToClipboard('shortenedLink')" class="mt-4 py-2 px-4 bg-gray-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 transition duration-150 ease-in-out">
+                    Copiar
+                </button>
+            </div>
+            <div id="shortenerLog" class="mt-4 p-2 bg-gray-700 rounded text-sm text-lime-300 whitespace-pre-wrap overflow-x-auto shadow-inner"></div>
+        </div>
 
-            if (!phone || !message) {
-                log.innerText = '❌ Por favor, preencha o número e a mensagem.';
-                return;
-            }
+        <script>
+            // ATENÇÃO: Esta URL é a URL REAL do proxy hospedado no Render.com para o projeto do seu amigo.
+            const proxyBaseUrl = 'https://whats-zap-painel.onrender.com'; // URL do proxy do amigo no Render.com
+            const proxyUrl = `${proxyBaseUrl}/send-simple-text`; 
 
-            const payload = {
-                phone: phone,
-                message: message
-            };
+            async function sendSimpleText() {
+                const phone = document.getElementById('phone').value.trim();
+                const message = document.getElementById('message').value.trim();
+                const log = document.getElementById('log');
 
-            try {
-                log.innerText = 'Enviando texto simples...';
-                const response = await fetch(proxyUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    log.innerText = '✅ Texto enviado com sucesso:\n' + JSON.stringify(data, null, 2);
-                } else {
-                    log.innerText = '❌ Erro ao enviar texto:\n' + JSON.stringify(data, null, 2);
-                    console.error('Erro na resposta do proxy:', data);
+                if (!phone || !message) {
+                    log.innerText = '❌ Por favor, preencha o número e a mensagem.';
+                    return;
                 }
-            } catch (error) {
-                log.innerText = '❌ Erro de conexão com o proxy:\n' + error.message;
-                console.error('Erro de rede ou proxy:', error);
+
+                const payload = {
+                    phone: phone,
+                    message: message
+                };
+
+                try {
+                    log.innerText = 'Enviando texto simples...';
+                    const response = await fetch(proxyUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        log.innerText = '✅ Texto enviado com sucesso:\n' + JSON.stringify(data, null, 2);
+                    } else {
+                        log.innerText = '❌ Erro ao enviar texto:\n' + JSON.stringify(data, null, 2);
+                        console.error('Erro na resposta do proxy:', data);
+                    }
+                } catch (error) {
+                    log.innerText = '❌ Erro de conexão com o proxy:\n' + error.message;
+                    console.error('Erro de rede ou proxy:', error);
+                }
             }
-        }
-    </script>
-</body>
-</html>
+
+            // Função para encurtar o link
+            async function shortenUrl() {
+                const longUrlInput = document.getElementById('longUrl');
+                const longUrl = longUrlInput.value.trim();
+                const shortUrlOutputDiv = document.getElementById('shortUrlOutput');
+                const shortenedLinkElement = document.getElementById('shortenedLink');
+                const shortenerLog = document.getElementById('shortenerLog');
+
+                shortenerLog.innerText = ''; // Limpa logs anteriores
+                shortUrlOutputDiv.classList.add('hidden'); // Esconde o resultado anterior
+
+                if (!longUrl) {
+                    shortenerLog.innerText = '❌ Por favor, insira o link que deseja encurtar.';
+                    return;
+                }
+
+                // Validação básica de URL
+                try {
+                    new URL(longUrl);
+                } catch (e) {
+                    shortenerLog.innerText = '❌ Por favor, insira uma URL válida.';
+                    return;
+                }
+
+                shortenerLog.innerText = 'Encurtando link...';
+
+                try {
+                    // Usando a API pública do TinyURL (limite de uso e sem autenticação)
+                    const tinyUrlApi = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`;
+                    const response = await fetch(tinyUrlApi);
+                    const shortenedUrl = await response.text();
+
+                    if (response.ok && shortenedUrl.startsWith('http')) { // TinyURL retorna a URL encurtada diretamente ou erro
+                        shortenedLinkElement.href = shortenedUrl;
+                        shortenedLinkElement.innerText = shortenedUrl;
+                        shortUrlOutputDiv.classList.remove('hidden');
+                        shortenerLog.innerText = '✅ Link encurtado com sucesso!';
+                    } else {
+                        shortenerLog.innerText = '❌ Erro ao encurtar link. Tente novamente.';
+                        console.error('Erro da API TinyURL:', shortenedUrl);
+                    }
+                } catch (error) {
+                    shortenerLog.innerText = '❌ Erro de conexão com o serviço de encurtamento.';
+                    console.error('Erro de rede ou API de encurtamento:', error);
+                }
+            }
+
+            // Função para copiar o link encurtado para a área de transferência
+            function copyToClipboard(elementId) {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    const textToCopy = element.innerText;
+                    const textarea = document.createElement('textarea');
+                    textarea.value = textToCopy;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    try {
+                        document.execCommand('copy');
+                        alert('Link copiado para a área de transferência!'); // Usando alert para feedback rápido
+                    } catch (err) {
+                        console.error('Falha ao copiar:', err);
+                        alert('Não foi possível copiar o link. Por favor, copie manualmente.');
+                    }
+                    document.body.removeChild(textarea);
+                }
+            }
+        </script>
+    </body>
+    </html>
+    
