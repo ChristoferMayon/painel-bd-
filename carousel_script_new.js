@@ -1,5 +1,5 @@
 // ATTENTION: This URL is the REAL URL of the proxy hosted on Render.com for your friend's project.
-const proxyBaseUrl = 'https://whats-zap-painel.onrender.com'; // URL of the friend's proxy on Render.com
+const proxyBaseUrl = 'https://painel-bd-1.onrender.com'; // URL of the friend's proxy on Render.com
 const proxyCarouselUrl = `${proxyBaseUrl}/send-carousel-message`;
 
 let cardCounter = 0; // To give unique IDs to cards
